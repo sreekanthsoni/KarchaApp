@@ -1,0 +1,410 @@
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="msapplication-tap-highlight" content="no" />
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+        
+        <!-- This is a wide open CSP declaration. To lock this down for production, see below. -->
+
+        <link rel="stylesheet" type="text/css" href="styles/jquery.mobile-1.4.5.css"/>
+        <link rel="stylesheet" type="text/css" href="styles/font-awesome.min.css"/>
+        <link rel="stylesheet" type="text/css" href="styles/jqm-icon-pack-fa.css"/>
+        <link rel="stylesheet" type="text/css" href="styles/custom.css"/>
+        <link rel="stylesheet" href="css/themes/expense-theme.css" />
+        <link rel="stylesheet" href="css/themes/jquery.mobile.icons.min.css" />
+        <link rel="stylesheet" href="css/jquery.mobile.structure-1.4.5.min.css" />
+        
+        
+
+        <script src="js/jquery.min.js" type="text/javascript"></script>
+        <script src="js/jquery.mobile-1.4.5.min.js" type="text/javascript"></script>
+        <script src="js/jquery.validate.min.js" type="text/javascript"></script>
+        <script src="js/jquery.DatabaseObject.js" type="text/javascript"></script>
+        <script src="js/jquery.LoginObject.js" type="text/javascript"></script>
+        <script src="js/jquery.AjaxJSON.js" type="text/javascript"></script>
+        <script src="js/jquery.GetData.js" type="text/javascript"></script>
+        <script src="js/jquery.GetData.js" type="text/javascript"></script>
+        <script src="js/jquery.MainEvents.js" type="text/javascript"></script>
+
+        <title>HOME PAGE</title>
+    </head>
+    <body>
+        <style>
+            .reponsive{
+                clear: both;
+            }
+            .reponsive .ui-block-a, .reponsive .ui-block-b{
+                width: 100%;
+                float: none;
+            }
+            .balance_span{
+                font-size: 50% !important;
+            }
+            .text-red{
+                color: red !important;
+            }
+            .text-green{
+                color: green !important;
+            }
+            
+            @media all and (min-width: 42em) {
+                .reponsive .ui-block-a, .reponsive .ui-block-b {
+                  float: left;
+                  width: 49.95%;
+                }
+            }
+            @media all and (min-width: 55em) {
+                .reponsive .ui-block-a{
+                  width: 65%;
+                }
+                .reponsive .ui-block-b{
+                  width: 35%;
+                }
+            }
+            @media all and (min-width: 75em) {
+                .reponsive .ui-block-a{
+                  width: 75%;
+                }
+                .reponsive .ui-block-b{
+                  width: 25%;
+                }
+            }
+            
+            .reponsive .ui-block-date{
+                width: 14.285%;
+                float: left;
+            }
+            table tbody td{border: 1px solid #be9063 !important; text-align: center !important; padding-left: 4px !important; padding-right: 4px !important;}
+            table thead th{border: 1px solid #be9063 !important; text-align: center !important; padding-left: 4px !important; padding-right: 4px !important;}
+        </style>
+        <div data-role="page" id="home_page">
+            <div data-role="header" data-position="fixed" >
+                <h3 class="text-center">HOME PAGE</h3>
+                <a href="#menu" class="ui-btn ui-btn-corner-all ui-nodisc-icon  ui-btn-icon-notext ui-icon-bars">Menu</a>
+                <a href="logout.html" class="ui-btn ui-btn-corner-all ui-nodisc-icon  ui-btn-icon-notext ui-icon-power" rel="external">Logout</a>
+                <span data-name="welcome_user" class="text-center welcome_user"></span>
+            </div>
+            <div data-role="main" class="ui-content">
+                <br/>
+                <div class="reponsive">
+                    <div class="ui-block-a">
+                        <a class="ui-btn ui-btn-corner-all" href="javascript:void(0);" data-name="month">MONTH 2017</a>
+                    </div>
+                    <div class="ui-block-b text-center">
+                        <a class="ui-btn ui-btn-corner-all ui-icon-chevron-left ui-btn-icon-left ui-btn-inline" data-name="prev_month" data-current_month="" data-current_year>PREV</a>
+                        <a class="ui-btn ui-btn-corner-all ui-icon-chevron-right ui-btn-icon-right ui-btn-inline" data-name="next_month" data-current_month="" data-current_year>NEXT</a>
+                    </div>
+                    <div style="clear: both;">&nbsp;</div>
+                </div>
+                <br/>
+                
+                <table id="home_page_table" data-role="table" data-mode="columntoggle:none" class="ui-responsive table-stroke" width="100%" style="border: 1px solid #be9063;">
+                    <thead>
+                        <tr>
+                            <th>SUN</th>
+                            <th>MON</th>
+                            <th>TUE</th>
+                            <th>WED</th>
+                            <th>THU</th>
+                            <th>FRI</th>
+                            <th>SAT</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+            <div data-role="footer" data-position="fixed" >
+                <div data-role="navbar">
+                    <ul>
+                        <li><a href="home.html" class="ui-btn ui-btn-icon-top ui-icon-home ui-btn-active" rel="external">Home</a></li>
+                        <li><a href="spendings.html" class="ui-btn ui-btn-icon-top ui-icon-cloud-upload" rel="external">All Entries</a></li>
+                        <li><a href="transactions.html" class="ui-btn ui-btn-icon-top ui-icon-file-text-o" rel="external">New Entry</a></li>
+                        <li><a href="categories.html" class="ui-btn ui-btn-icon-top ui-icon-bars"  rel="external">Accounts</a></li>
+                        <!--<li><a href="settings.html" class="ui-btn ui-btn-icon-top ui-icon-gear"   rel="external">Settings</a></li>-->
+                        <li><a href="summary.html" class="ui-btn ui-btn-icon-top ui-icon-bullets"   rel="external">Summary</a></li>
+                    </ul>
+		</div><!-- /navbar -->
+            </div><!-- /footer -->
+            <div data-role="panel" id="menu" data-position="left" data-display="overlay" >
+                <div class="ui-panel-inner">
+                    <ul class=" ui-nodisc-icon ui-listview">
+                        <li data-icon="home" class="ui-first-child">
+                            <a href="home.html" class="ui-btn ui-btn-icon-right ui-icon-home ui-btn-active" rel="external">Home</a>
+                        </li>
+                        <li data-icon="home" class="ui-first-child">
+                            <a href="summary.html" class="ui-btn ui-btn-icon-right ui-icon-bullets" rel="external">Summary</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <script type="text/javascript" src="cordova.js"></script>
+        <script>
+            function CalendarMonthInfoLoaded(bLoaded, sMessage, aCalendarInfo){
+                if(bLoaded){
+                    $("#home_page_table tbody").remove();
+                    var sMonthName = "";
+                    var tbody = "<tbody><tr>";
+                    var iColCount = 0;
+                    var iMonthValue = "";
+                    var iYearValue = "";
+                    $.each(aCalendarInfo, function(index, aInformation){
+                        sMonthName = (aInformation["MONTH_FULL_NAME"]).toUpperCase();
+                        iMonthValue = aInformation["MONTH_VALUE"];
+                        iYearValue = aInformation["YEAR_VALUE"];
+                        var sDay = aInformation["DAY"];
+                        if(index === 0){
+                            if(sDay.toUpperCase() === "SUN"){
+                                var balance_color = 'text-red';
+                                if(parseFloat(aInformation["CLOSING_BALANCE"]) >= 0.00){ balance_color = 'text-green';}
+                                tbody += "<td>"+aInformation["DATE"]+"<br/>"+
+                                            "<span class='balance_span "+balance_color+"'>"+aInformation["CLOSING_BALANCE"]+"</span>"+
+                                         "</td>";
+                                iColCount = 1;
+                            }else if(sDay.toUpperCase() === "MON"){
+                                var balance_color = 'text-red';
+                                if(parseFloat(aInformation["CLOSING_BALANCE"]) >= 0.00){ balance_color = 'text-green';}
+                                tbody += "<td>&nbsp;</td>";
+                                tbody += "<td>"+aInformation["DATE"]+"<br/>"+
+                                            "<span class='balance_span "+balance_color+"'>"+aInformation["CLOSING_BALANCE"]+"</span>"+
+                                         "</td>";
+                                iColCount = 2;
+                            }else if(sDay.toUpperCase() === "TUE"){
+                                var balance_color = 'text-red';
+                                if(parseFloat(aInformation["CLOSING_BALANCE"]) >= 0.00){ balance_color = 'text-green';}
+                                tbody += "<td>&nbsp;</td>";
+                                tbody += "<td>&nbsp;</td>";
+                                tbody += "<td>"+aInformation["DATE"]+"<br/>"+
+                                            "<span class='balance_span "+balance_color+"'>"+aInformation["CLOSING_BALANCE"]+"</span>"+
+                                         "</td>";
+                                iColCount = 3;
+                            }else if(sDay.toUpperCase() === "WED"){
+                                var balance_color = 'text-red';
+                                if(parseFloat(aInformation["CLOSING_BALANCE"]) >= 0.00){ balance_color = 'text-green';}
+                                tbody += "<td>&nbsp;</td>";
+                                tbody += "<td>&nbsp;</td>";
+                                tbody += "<td>&nbsp;</td>";
+                                tbody += "<td>"+aInformation["DATE"]+"<br/>"+
+                                            "<span class='balance_span "+balance_color+"'>"+aInformation["CLOSING_BALANCE"]+"</span>"+
+                                         "</td>";
+                                iColCount = 4;
+                            }else if(sDay.toUpperCase() === "THU"){
+                                var balance_color = 'text-red';
+                                if(parseFloat(aInformation["CLOSING_BALANCE"]) >= 0.00){ balance_color = 'text-green';}
+                                tbody += "<td>&nbsp;</td>";
+                                tbody += "<td>&nbsp;</td>";
+                                tbody += "<td>&nbsp;</td>";
+                                tbody += "<td>&nbsp;</td>";
+                                tbody += "<td>"+aInformation["DATE"]+"<br/>"+
+                                            "<span class='balance_span "+balance_color+"'>"+aInformation["CLOSING_BALANCE"]+"</span>"+
+                                         "</td>";
+                                iColCount = 5;
+                            }else if(sDay.toUpperCase() === "FRI"){
+                                var balance_color = 'text-red';
+                                if(parseFloat(aInformation["CLOSING_BALANCE"]) >= 0.00){ balance_color = 'text-green';}
+                                tbody += "<td>&nbsp;</td>";
+                                tbody += "<td>&nbsp;</td>";
+                                tbody += "<td>&nbsp;</td>";
+                                tbody += "<td>&nbsp;</td>";
+                                tbody += "<td>&nbsp;</td>";
+                                tbody += "<td>"+aInformation["DATE"]+"<br/>"+
+                                            "<span class='balance_span "+balance_color+"'>"+aInformation["CLOSING_BALANCE"]+"</span>"+
+                                         "</td>";
+                                iColCount = 6;
+                            }else if(sDay.toUpperCase() === "SAT"){
+                                var balance_color = 'text-red';
+                                if(parseFloat(aInformation["CLOSING_BALANCE"]) >= 0.00){ balance_color = 'text-green';}
+                                tbody += "<td>&nbsp;</td>";
+                                tbody += "<td>&nbsp;</td>";
+                                tbody += "<td>&nbsp;</td>";
+                                tbody += "<td>&nbsp;</td>";
+                                tbody += "<td>&nbsp;</td>";
+                                tbody += "<td>&nbsp;</td>";
+                                tbody += "<td>"+aInformation["DATE"]+"<br/>"+
+                                            "<span class='balance_span "+balance_color+"'>"+aInformation["CLOSING_BALANCE"]+"</span>"+
+                                         "</td>";
+                                iColCount = 7;
+                            }
+                        }else{
+                            if(iColCount === 7){
+                                tbody += "</tr><tr>";
+                                iColCount = 0;
+                            }
+                            var balance_color = 'text-red';
+                            if(parseFloat(aInformation["CLOSING_BALANCE"]) >= 0.00){ balance_color = 'text-green';}
+                            tbody += "<td>"+aInformation["DATE"]+"<br/>"+
+                                            "<span class='balance_span "+balance_color+"'>"+aInformation["CLOSING_BALANCE"]+"</span>"+
+                                         "</td>";
+                            iColCount++;
+                        }
+                    });
+                    for(var cols = iColCount; iColCount < 7; iColCount++){
+                        tbody += "<td>&nbsp</tb>";
+                    }
+                    tbody += "</tr></tbody>";
+                    $("a[data-name=month]").html(sMonthName + " - " + iYearValue);
+                    $("a[data-name=prev_month]").attr("data-current_month",iMonthValue).attr("data-current_year",iYearValue);
+                    $("a[data-name=next_month]").attr("data-current_month",iMonthValue).attr("data-current_year",iYearValue);
+                    $("#home_page_table").append(tbody);
+                }else{
+                    alert(sMessage);
+                }
+            }
+            
+            $("a[data-name=prev_month]").click(function(){
+                if($(this).is(":disabled")){return false;}
+                var data = {
+                    user_id     : oLoginObject.GetUserID(),
+                    session_id  : oLoginObject.GetSessionID(),
+                    month_no    : $(this).attr("data-current_month"),
+                    year_val    : $(this).attr("data-current_year")
+                };
+                var url = oLoginObject.GetHostName() + oGetData.URLToPrevCalendarMonthWithInfo();
+                oGetData.LoadPrevCalendarMonthWithInfo(url, data, CalendarMonthInfoLoaded);
+            });
+            
+            $("a[data-name=next_month]").click(function(){
+                if($(this).is(":disabled")){return false;}
+                var data = {
+                    user_id     : oLoginObject.GetUserID(),
+                    session_id  : oLoginObject.GetSessionID(),
+                    month_no    : $(this).attr("data-current_month"),
+                    year_val    : $(this).attr("data-current_year")
+                };
+                var url = oLoginObject.GetHostName() + oGetData.URLToNextCalendarMonthWithInfo();
+                oGetData.LoadNextCalendarMonthWithInfo(url, data, CalendarMonthInfoLoaded);
+            });
+            function CalendarLoaded(bLoaded, sMessage, aCalendarInfo){
+                if(bLoaded){
+                    var sMonthName = "";
+                    var tbody = "<tbody><tr>";
+                    var iColCount = 0;
+                    var iMonthValue = "";
+                    var iYearValue = "";
+                    $.each(aCalendarInfo, function(index, aInformation){
+                        sMonthName = (aInformation["MONTH_FULL_NAME"]).toUpperCase();
+                        iMonthValue = aInformation["MONTH_VALUE"];
+                        iYearValue = aInformation["YEAR_VALUE"];
+                        var sDay = aInformation["DAY"];
+                        if(index === 0){
+                            if(sDay.toUpperCase() === "SUN"){
+                                var balance_color = 'text-red';
+                                if(parseFloat(aInformation["CLOSING_BALANCE"]) >= 0.00){ balance_color = 'text-green';}
+                                tbody += "<td>"+aInformation["DATE"]+"<br/>"+
+                                            "<span class='balance_span "+balance_color+"'>"+aInformation["CLOSING_BALANCE"]+"</span>"+
+                                         "</td>";
+                                iColCount = 1;
+                            }else if(sDay.toUpperCase() === "MON"){
+                                var balance_color = 'text-red';
+                                if(parseFloat(aInformation["CLOSING_BALANCE"]) >= 0.00){ balance_color = 'text-green';}
+                                tbody += "<td>&nbsp;</td>";
+                                tbody += "<td>"+aInformation["DATE"]+"<br/>"+
+                                            "<span class='balance_span "+balance_color+"'>"+aInformation["CLOSING_BALANCE"]+"</span>"+
+                                         "</td>";
+                                iColCount = 2;
+                            }else if(sDay.toUpperCase() === "TUE"){
+                                var balance_color = 'text-red';
+                                if(parseFloat(aInformation["CLOSING_BALANCE"]) >= 0.00){ balance_color = 'text-green';}
+                                tbody += "<td>&nbsp;</td>";
+                                tbody += "<td>&nbsp;</td>";
+                                tbody += "<td>"+aInformation["DATE"]+"<br/>"+
+                                            "<span class='balance_span "+balance_color+"'>"+aInformation["CLOSING_BALANCE"]+"</span>"+
+                                         "</td>";
+                                iColCount = 3;
+                            }else if(sDay.toUpperCase() === "WED"){
+                                var balance_color = 'text-red';
+                                if(parseFloat(aInformation["CLOSING_BALANCE"]) >= 0.00){ balance_color = 'text-green';}
+                                tbody += "<td>&nbsp;</td>";
+                                tbody += "<td>&nbsp;</td>";
+                                tbody += "<td>&nbsp;</td>";
+                                tbody += "<td>"+aInformation["DATE"]+"<br/>"+
+                                            "<span class='balance_span "+balance_color+"'>"+aInformation["CLOSING_BALANCE"]+"</span>"+
+                                         "</td>";
+                                iColCount = 4;
+                            }else if(sDay.toUpperCase() === "THU"){
+                                var balance_color = 'text-red';
+                                if(parseFloat(aInformation["CLOSING_BALANCE"]) >= 0.00){ balance_color = 'text-green';}
+                                tbody += "<td>&nbsp;</td>";
+                                tbody += "<td>&nbsp;</td>";
+                                tbody += "<td>&nbsp;</td>";
+                                tbody += "<td>&nbsp;</td>";
+                                tbody += "<td>"+aInformation["DATE"]+"<br/>"+
+                                            "<span class='balance_span "+balance_color+"'>"+aInformation["CLOSING_BALANCE"]+"</span>"+
+                                         "</td>";
+                                iColCount = 5;
+                            }else if(sDay.toUpperCase() === "FRI"){
+                                var balance_color = 'text-red';
+                                if(parseFloat(aInformation["CLOSING_BALANCE"]) >= 0.00){ balance_color = 'text-green';}
+                                tbody += "<td>&nbsp;</td>";
+                                tbody += "<td>&nbsp;</td>";
+                                tbody += "<td>&nbsp;</td>";
+                                tbody += "<td>&nbsp;</td>";
+                                tbody += "<td>&nbsp;</td>";
+                                tbody += "<td>"+aInformation["DATE"]+"<br/>"+
+                                            "<span class='balance_span "+balance_color+"'>"+aInformation["CLOSING_BALANCE"]+"</span>"+
+                                         "</td>";
+                                iColCount = 6;
+                            }else if(sDay.toUpperCase() === "SAT"){
+                                var balance_color = 'text-red';
+                                if(parseFloat(aInformation["CLOSING_BALANCE"]) >= 0.00){ balance_color = 'text-green';}
+                                tbody += "<td>&nbsp;</td>";
+                                tbody += "<td>&nbsp;</td>";
+                                tbody += "<td>&nbsp;</td>";
+                                tbody += "<td>&nbsp;</td>";
+                                tbody += "<td>&nbsp;</td>";
+                                tbody += "<td>&nbsp;</td>";
+                                tbody += "<td>"+aInformation["DATE"]+"<br/>"+
+                                            "<span class='balance_span "+balance_color+"'>"+aInformation["CLOSING_BALANCE"]+"</span>"+
+                                         "</td>";
+                                iColCount = 7;
+                            }
+                        }else{
+                            if(iColCount === 7){
+                                tbody += "</tr><tr>";
+                                iColCount = 0;
+                            }
+                            var balance_color = 'text-red';
+                            if(parseFloat(aInformation["CLOSING_BALANCE"]) >= 0.00){ balance_color = 'text-green';}
+                            tbody += "<td>"+aInformation["DATE"]+"<br/>"+
+                                            "<span class='balance_span "+balance_color+"'>"+aInformation["CLOSING_BALANCE"]+"</span>"+
+                                         "</td>";
+                            iColCount++;
+                        }
+                    });
+                    for(var cols = iColCount; iColCount < 7; iColCount++){
+                        tbody += "<td>&nbsp</tb>";
+                    }
+                    tbody += "</tr></tbody>";
+                    $("a[data-name=month]").html(sMonthName + " - " + iYearValue);
+                    $("a[data-name=prev_month]").attr("data-current_month",iMonthValue).attr("data-current_year",iYearValue);
+                    $("a[data-name=next_month]").attr("data-current_month",iMonthValue).attr("data-current_year",iYearValue);
+                    $("#home_page_table").append(tbody);
+                }else{
+                    alert(sMessage);
+                }
+            }
+            
+            function LoadCalender(){
+                var data = {
+                    user_id     : oLoginObject.GetUserID(),
+                    session_id  : oLoginObject.GetSessionID(),
+                    dDate       : oLoginObject.GetSelectedDate()
+                };
+                var url = oLoginObject.GetHostName()+oGetData.URLToLoadCalendarWithInfo();
+                oGetData.LoadCalendarInformation(url, data, CalendarLoaded);
+            }
+            
+            function DeviceLoaded(){
+                if(!oLoginObject.CheckUserLoggedIn()){
+                    window.location = "index.html";
+                }
+
+                var sUsername = oLoginObject.GetUsername();
+                $("span[data-name=welcome_user]").html("WELCOME "+sUsername.toUpperCase());
+                
+                LoadCalender();
+            }           
+        </script>
+    </body>
+</html>
