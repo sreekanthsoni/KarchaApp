@@ -9,7 +9,7 @@ $.DatabaseObject = function(){
         _sVersion           : "1.0",
         _sDisplayName       : "DATABASE OF EXPENSE",
         _iMaxSize           : 65536,
-        _sHostName          : "http://192.168.1.194/Expense/KarchaApp/"
+        _sHostName          : "http://bhsbrothers.com/Expense/KarchaApp/"
     };
     
     _connectDB = function(){
