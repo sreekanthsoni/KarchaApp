@@ -7,7 +7,7 @@
     <author email="srikanthsoni@bhst.co.in" href="http://bhst.co.in">
         BHST TEAM
     </author>
-    <gap:plugin name="com.phonegap.plugin.statusbar" />
+    <plugin name="cordova-plugin-statusbar" spec="https://github.com/apache/cordova-plugin-statusbar.git" />
     <content src="index.html" />
     <preference name="fullscreen" value="true" />
     <preference name="DisallowOverscroll" value="true" />
